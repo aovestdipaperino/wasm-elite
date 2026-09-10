@@ -1,5 +1,6 @@
 [package]
 name = "elite-sim"
+description = "Game rules and state for wasm-elite: flight, combat, trading, docking"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
@@ -7,3 +8,10 @@ repository.workspace = true
 license.workspace = true
 
 [dependencies]
+elite-core = { workspace = true }
+elite-math = { workspace = true, features = ["serde"] }
+elite-ships = { workspace = true }
+serde = { workspace = true }
+
+[dev-dependencies]
+serde_json = { workspace = true }
