@@ -1,5 +1,6 @@
 [package]
 name = "elite-ships"
+description = "Ship blueprints for wasm-elite, transcribed from the BBC Micro disc version"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
