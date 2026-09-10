@@ -50,22 +50,19 @@ const glyphSheets = PALETTE.map((colour) => {
   return sheet;
 });
 
-// Keyboard: track "S" in the market as Sell only when the market is showing; the sim ignores
-// keys that do not apply, so sending both meanings is harmless.
-const held = new Set();
+// Keyboard. Every transition is forwarded; the simulation ignores repeats of a key it already
+// holds, so no key-up bookkeeping is needed here (a lost key-up would otherwise wedge the key).
 function onKey(e, down) {
   const codes = KEYMAP[e.code];
   if (!codes) return;
   e.preventDefault();
-  if (down && held.has(e.code)) return; // ignore auto-repeat
-  if (down) held.add(e.code); else held.delete(e.code);
   for (const c of codes) elite.key(c, down);
-  // S is both "dive" and "sell"; sell only makes sense as an edge on the market screen.
+  // S is both "dive" and "sell"; the market screen only reacts to the press edge.
   if (e.code === "KeyS") elite.key(K.Sell, down);
 }
 window.addEventListener("keydown", (e) => onKey(e, true));
 window.addEventListener("keyup", (e) => onKey(e, false));
-window.addEventListener("blur", () => { for (const code of held) for (const c of KEYMAP[code]) elite.key(c, false); held.clear(); });
+window.addEventListener("blur", () => { for (let c = 0; c <= K.Digit9; c++) elite.key(c, false); });
 
 document.getElementById("fullscreen").onclick = () => canvas.requestFullscreen?.();
 document.getElementById("help").onclick = () => { const k = document.getElementById("keys"); k.hidden = !k.hidden; };
