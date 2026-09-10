@@ -9,6 +9,8 @@ descriptions come from the bit-exact [`elite-core`](https://github.com/aovestdip
 Elite was written by Ian Bell and David Braben. This is an unofficial fan project; ship designs,
 names and text remain the property of their owners.
 
+Live at <https://wasm-elite.netlify.app>.
+
 ## Play
 
 Run `./build.sh` (needs `wasm-bindgen`, `wasm-opt` and the `wasm32-unknown-unknown` target), then
