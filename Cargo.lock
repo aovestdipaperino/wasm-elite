@@ -17,6 +17,12 @@ dependencies = [
 [[package]]
 name = "elite-render"
 version = "0.1.0"
+dependencies = [
+ "elite-core",
+ "elite-math",
+ "elite-ships",
+ "elite-sim",
+]
 
 [[package]]
 name = "elite-ships"

@@ -1,5 +1,6 @@
 [package]
 name = "elite-render"
+description = "Line-list renderer for wasm-elite: wireframe ships, planets, scanner, dashboard and text"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
@@ -7,3 +8,7 @@ repository.workspace = true
 license.workspace = true
 
 [dependencies]
+elite-core = { workspace = true }
+elite-math = { workspace = true }
+elite-ships = { workspace = true }
+elite-sim = { workspace = true }
