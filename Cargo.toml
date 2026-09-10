@@ -1,0 +1,32 @@
+[workspace]
+resolver = "3"
+members = [
+    "crates/elite-math",
+    "crates/elite-ships",
+    "crates/elite-sim",
+    "crates/elite-render",
+    "crates/elite-wasm",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+authors = ["Enzo Lombardi <enzinol@gmail.com>"]
+repository = "https://github.com/aovestdipaperino/wasm-elite"
+license = "MIT"
+
+[workspace.dependencies]
+elite-math = { path = "crates/elite-math" }
+elite-ships = { path = "crates/elite-ships" }
+elite-sim = { path = "crates/elite-sim" }
+elite-render = { path = "crates/elite-render" }
+elite-core = { git = "https://github.com/aovestdipaperino/elite-galaxy", package = "elite-core" }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

@@ -1,0 +1,14 @@
+[package]
+name = "elite-math"
+description = "Fixed-point 3D math, RNG and trig tables for wasm-elite"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+repository.workspace = true
+license.workspace = true
+
+[dependencies]
+serde = { workspace = true, optional = true }
+
+[features]
+serde = ["dep:serde"]
