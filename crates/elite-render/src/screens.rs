@@ -27,12 +27,14 @@ pub fn title(g: &Game, f: &mut Frame) {
         wire::draw_ship(cobra, View::Front, f, g.step);
     }
     f.text_centred(160, "PRESS FIRE OR SPACE, COMMANDER.", WHITE);
-    let mut t = Text::new(8, VIEW_HEIGHT + 6);
-    t.line(f, "A FAN REIMPLEMENTATION OF ELITE (1984)");
-    t.line(f, "BY IAN BELL AND DAVID BRABEN.");
-    t.line(f, "RUST + WEBASSEMBLY. NOT AFFILIATED.");
-    t.line(f, "KEYS: S/X PITCH  </> ROLL  SPACE/? SPEED");
-    t.line(f, "A FIRE  H HYPERSPACE  J JUMP  F1-F4 VIEWS");
+    let mut t = Text::new(0, VIEW_HEIGHT + 4);
+    t.line_height = 8;
+    t.line(f, "A FAN REMAKE OF ELITE (1984) BY");
+    t.line(f, "IAN BELL AND DAVID BRABEN.");
+    t.line(f, "RUST + WEBASSEMBLY, UNOFFICIAL.");
+    t.line(f, "S/X PITCH </> ROLL SPACE/? SPEED");
+    t.line(f, "A FIRE  H HYPERSPACE  J JUMP");
+    t.line(f, "F1-F4 VIEWS   1 = LAUNCH");
 }
 
 pub fn death(g: &Game, f: &mut Frame) {
@@ -140,7 +142,7 @@ pub fn market(g: &Game, f: &mut Frame) {
     let quotes = g.market_prices();
     let docked = g.mode == Mode::Docked;
     for (i, (c, q)) in COMMODITIES.iter().zip(quotes.iter()).enumerate() {
-        let y = 32 + 9 * i as i16;
+        let y = 32 + 8 * i as i16;
         let selected = docked && g.market_cursor as usize == i;
         let colour = if selected { YELLOW } else { WHITE };
         if selected {
@@ -166,14 +168,11 @@ pub fn market(g: &Game, f: &mut Frame) {
         }
     }
     let footer = if docked {
-        format!(
-            "CASH {}   UP/DOWN SELECT  B BUY  S SELL",
-            credits(g.commander.credits)
-        )
+        format!("CASH {}  B BUY  S SELL", credits(g.commander.credits))
     } else {
         format!("CASH {}", credits(g.commander.credits))
     };
-    f.text_centred(VIEW_HEIGHT - 4 - 8, &footer, CYAN);
+    f.text_centred(VIEW_HEIGHT - 16, &footer, CYAN);
 }
 
 pub fn inventory(g: &Game, f: &mut Frame) {

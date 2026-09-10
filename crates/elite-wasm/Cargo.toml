@@ -1,9 +1,17 @@
 [package]
 name = "elite-wasm"
+description = "wasm-bindgen glue between the wasm-elite simulation and the browser shell"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
 repository.workspace = true
 license.workspace = true
 
+[lib]
+crate-type = ["cdylib", "rlib"]
+
 [dependencies]
+elite-render = { workspace = true }
+elite-sim = { workspace = true }
+serde_json = { workspace = true }
+wasm-bindgen = "0.2"

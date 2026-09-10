@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elite in WebAssembly</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <canvas id="screen" width="256" height="248" tabindex="0" aria-label="Elite game screen"></canvas>
+  <div class="bar">
+    <span id="status">loading…</span>
+    <span class="spacer"></span>
+    <button id="fullscreen" type="button">Fullscreen</button>
+    <button id="reset" type="button">New commander</button>
+    <button id="help" type="button">Keys</button>
+  </div>
+  <section id="keys" hidden>
+    <h2>Controls</h2>
+    <table>
+      <tr><td>S / X (or ↑ / ↓)</td><td>dive / climb</td></tr>
+      <tr><td>&lt; / &gt; (or ← / →)</td><td>roll left / right</td></tr>
+      <tr><td>Space / ?</td><td>speed up / slow down</td></tr>
+      <tr><td>A</td><td>fire lasers</td></tr>
+      <tr><td>J</td><td>in-system jump (hold)</td></tr>
+      <tr><td>H</td><td>hyperspace to the selected system</td></tr>
+      <tr><td>F1 F2 F3 F4</td><td>front, rear, left, right view</td></tr>
+      <tr><td>1</td><td>launch (when docked)</td></tr>
+      <tr><td>2 / 3 / 4 / 5 / 6</td><td>buy cargo · sell cargo · equip · galactic chart · short range chart</td></tr>
+      <tr><td>7 / 8 / 9 / 0</td><td>data on system · market prices · status · inventory</td></tr>
+      <tr><td>Arrow keys on a chart</td><td>move the cursor; O jumps it home</td></tr>
+      <tr><td>Market: ↑ ↓ then B / S</td><td>select item, buy, sell</td></tr>
+    </table>
+    <p>Dock by flying into the station's slot slowly, nose first, with your roll matched to the slot.
+       The commander is saved in this browser whenever you dock.</p>
+  </section>
+</main>
+<script type="module" src="main.js"></script>
+</body>
+</html>

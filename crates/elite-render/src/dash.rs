@@ -7,9 +7,9 @@ use crate::{CYAN, Frame, HEIGHT, RED, VIEW_HEIGHT, WHITE, WIDTH, YELLOW, scanner
 
 const LEFT_LABEL_X: i16 = 2;
 const LEFT_BAR_X: i16 = 20;
-const RIGHT_BAR_X: i16 = 186;
-const RIGHT_LABEL_X: i16 = 238;
-const BAR_W: i16 = 60;
+const RIGHT_BAR_X: i16 = 176;
+const RIGHT_LABEL_X: i16 = 236;
+const BAR_W: i16 = 56;
 
 pub fn draw(g: &Game, f: &mut Frame) {
     // Dashboard frame.
@@ -19,23 +19,23 @@ pub fn draw(g: &Game, f: &mut Frame) {
     f.line(WIDTH - 1, VIEW_HEIGHT, WIDTH - 1, HEIGHT - 1, WHITE);
 
     let p = &g.player;
-    let mut y = VIEW_HEIGHT + 4;
+    let mut y = VIEW_HEIGHT + 3;
     let warn = |v: u8, low: u8| if v < low { RED } else { YELLOW };
 
     // Left column: speed, roll, pitch, then four energy banks.
     left(f, y, "SP", p.speed as i16, MAX_SPEED as i16, YELLOW);
-    y += 8;
+    y += 7;
     centred_bar(f, LEFT_BAR_X, y, p.alpha as i16, MAX_ROLL as i16, "RL");
-    y += 8;
+    y += 7;
     centred_bar(f, LEFT_BAR_X, y, p.beta as i16, MAX_PITCH as i16, "DC");
-    y += 9;
+    y += 8;
     // 255 energy across four banks of 64.
     for bank in (0..4).rev() {
         let level = (p.energy as i16 - bank * 64).clamp(0, 64);
         let colour = if p.energy < 64 { RED } else { YELLOW };
         bar(f, LEFT_BAR_X, y, level, 64, colour);
         f.text(LEFT_LABEL_X, y - 1, &(4 - bank).to_string(), WHITE);
-        y += 6;
+        y += 5;
     }
 
     // Right column.
@@ -50,9 +50,9 @@ pub fn draw(g: &Game, f: &mut Frame) {
     );
     y += 8;
     right(f, y, "AS", p.aft_shield as i16, 255, warn(p.aft_shield, 48));
-    y += 8;
+    y += 7;
     right(f, y, "FU", g.commander.fuel as i16, 70, YELLOW);
-    y += 8;
+    y += 7;
     right(
         f,
         y,
@@ -61,7 +61,7 @@ pub fn draw(g: &Game, f: &mut Frame) {
         255,
         if p.cabin_temp > 200 { RED } else { YELLOW },
     );
-    y += 8;
+    y += 7;
     right(
         f,
         y,
@@ -70,7 +70,7 @@ pub fn draw(g: &Game, f: &mut Frame) {
         255,
         if p.laser_temp > 200 { RED } else { YELLOW },
     );
-    y += 8;
+    y += 7;
     right(
         f,
         y,
@@ -79,7 +79,7 @@ pub fn draw(g: &Game, f: &mut Frame) {
         255,
         if p.altitude < 24 { RED } else { YELLOW },
     );
-    y += 8;
+    y += 7;
     // Missiles as small boxes.
     f.text(RIGHT_LABEL_X, y - 1, "MI", WHITE);
     for i in 0..4 {

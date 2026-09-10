@@ -77,6 +77,16 @@ pub fn draw_sun(g: &Game, f: &mut Frame, view: View) {
         return;
     }
     let (cx, cy) = project(x, y, z);
+    // Hidden behind the planet?
+    let (px, py, pz) = view_coords(g.universe.planet, view);
+    if pz > 0 && pz < z {
+        let (pcx, pcy) = project(px, py, pz);
+        let pr = project_radius(PLANET_RADIUS, pz) as i64;
+        let d2 = (cx as i64 - pcx as i64).pow(2) + (cy as i64 - pcy as i64).pow(2);
+        if d2 < (pr - r as i64).max(0).pow(2) {
+            return;
+        }
+    }
     if cx + r < 0 || cx - r >= WIDTH as i32 || cy + r < 0 || cy - r >= VIEW_HEIGHT as i32 {
         return;
     }
