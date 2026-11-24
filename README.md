@@ -1,5 +1,7 @@
 # wasm-elite
 
+[![GitHub stars](https://img.shields.io/github/stars/aovestdipaperino/wasm-elite?logo=github&color=brightgreen)](https://github.com/aovestdipaperino/wasm-elite/stargazers)
+
 A gameplay-faithful reimplementation of the 1984 BBC Micro game **Elite** (disc version) in Rust,
 compiled to WebAssembly and playable in a browser. No emulator, no original binary: the game rules,
 3D wireframe pipeline, scanner, market and galaxy are rewritten in Rust using Mark Moxon's
